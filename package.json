@@ -1,0 +1,69 @@
+{
+  "name": "@tkesgar/ariadoa",
+  "version": "0.0.0",
+  "description": "Express/Connect async wrapper",
+  "keywords": [
+    "express",
+    "connect",
+    "async"
+  ],
+  "license": "MIT",
+  "author": "Ted Kesgar <t.kesgar@live.com> (https://tkesgar.com)",
+  "contributors": [
+    "Ted Kesgar <t.kesgar@live.com> (https://tkesgar.com)"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tkesgar/ariadoa.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tkesgar/ariadoa/issues"
+  },
+  "homepage": "https://github.com/tkesgar/ariadoa#readme",
+  "engines": {
+    "node": ">=8"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "watch": "tsc -w",
+    "lint": "eslint . --ext .js,.ts",
+    "format": "prettier --write '**/*'",
+    "test": "jest",
+    "clean": "rm -rf dist/**",
+    "build": "tsc",
+    "version": "conventional-changelog -p angular -i CHANGELOG.md -s && git add CHANGELOG.md"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
+    "@types/jest": "^25.1.2",
+    "@types/node": "^13.7.1",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
+    "@typescript-eslint/parser": "^2.19.2",
+    "conventional-changelog-cli": "^2.0.31",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-jest": "^23.7.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "express": "^4.17.1",
+    "husky": "^4.2.3",
+    "jest": "^25.1.0",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "ts-jest": "^25.2.0",
+    "typescript": "^3.7.5"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^19.1.1",
+    "@types/express": "^4.17.3",
+    "@types/hapi__hapi": "^19.0.2",
+    "hecks": "^2.2.0"
+  },
+  "peerDependencies": {
+    "express": ">=4"
+  }
+}
