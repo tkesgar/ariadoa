@@ -1,6 +1,6 @@
 {
   "name": "@tkesgar/ariadoa",
-  "version": "0.0.0",
+  "version": "1.0.0-beta.1",
   "description": "Express/Connect async wrapper",
   "keywords": [
     "express",
