@@ -1,7 +1,7 @@
 import Hapi, {
   Server,
   ServerInjectOptions,
-  ServerInjectResponse
+  ServerInjectResponse,
 } from "@hapi/hapi";
 import Hecks from "hecks";
 import express, { RequestHandler, ErrorRequestHandler } from "express";
@@ -28,6 +28,6 @@ export async function createTestResponse(
   const server = await createTestServer(...middlewares);
   return server.inject({
     url: "/",
-    ...injectRequest
+    ...injectRequest,
   });
 }

@@ -3,7 +3,7 @@ import { handle, createTestResponse } from "..";
 
 it("should send data from fn", async () => {
   const { payload } = await createTestResponse([
-    handle(() => ({ foo: "bar" }))
+    handle(() => ({ foo: "bar" })),
   ]);
 
   expect(JSON.parse(payload)).toEqual({ foo: "bar" });
@@ -19,7 +19,7 @@ it("should continue to next middleware if middleware is true", async () => {
     ),
     (req: Request, res: Response): void => {
       res.send("foo");
-    }
+    },
   ]);
 
   expect(payload).toEqual("foo");
@@ -32,7 +32,7 @@ it("should not continue to next middleware if headers is sent", async () => {
     }),
     (req: Request, res: Response): void => {
       res.send("foo");
-    }
+    },
   ]);
 
   expect(statusCode).toEqual(201);
@@ -47,7 +47,7 @@ it("should send error to error handler", async () => {
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     (err: Error, req: Request, res: Response, next: NextFunction): void => {
       res.status(500).send(err.message);
-    }
+    },
   ]);
 
   expect(statusCode).toEqual(500);
@@ -67,7 +67,7 @@ it("should not trigger next handler if isMiddleware is true and handler function
         res.send("ristarte damegami");
       },
       { isMiddleware: true }
-    )
+    ),
   ]);
 
   expect(payload).toEqual("ristarte best waifu");
@@ -77,7 +77,7 @@ it("should not send any payload if fn returns undefined", async () => {
   const { payload } = await createTestResponse([
     handle(() => {
       return;
-    })
+    }),
   ]);
 
   expect(payload).toEqual("");
