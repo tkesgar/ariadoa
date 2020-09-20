@@ -1,11 +1,11 @@
 {
   "name": "@tkesgar/ariadoa",
   "version": "2.0.0",
-  "description": "Express/Connect async wrapper",
+  "description": "Wrapper to test Express-compatible middlewares",
   "keywords": [
     "express",
-    "connect",
-    "async"
+    "test",
+    "middleware"
   ],
   "license": "MIT",
   "author": "Ted Kesgar <t.kesgar@live.com> (https://tkesgar.com)",
