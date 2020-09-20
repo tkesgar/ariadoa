@@ -41,7 +41,7 @@ npm install @tkesgar/ariadoa --save-dev
 Given a list of middlewares, create an app with the middlewares and inject with
 a request.
 
-Please refer to [hapi Server.inject() docs][hapi-server-inject] for further
+Please refer to [hapi Server.inject() docs][hapi-inject] for further
 details of the request options and response object. Note that
 `createTestResponse` sets the request URL to `/` by default.
 
