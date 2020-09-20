@@ -1,9 +1,39 @@
-import { Request, Response, NextFunction } from "express";
-import { handle, createTestResponse } from "..";
+import { Request, Response, NextFunction, RequestHandler } from "express";
+import { createTestResponse } from ".";
+
+type HandleFunction<T = void> = (req: Request, res: Response) => T | Promise<T>;
+
+interface HandleOpts {
+  isMiddleware?: boolean;
+}
+
+function testHandle<T = void>(
+  fn: HandleFunction<T>,
+  opts: HandleOpts = {}
+): RequestHandler {
+  const { isMiddleware = false } = opts;
+
+  return (req, res, next): void => {
+    (async (): Promise<void> => {
+      const data = await fn(req, res);
+
+      if (res.headersSent) {
+        return;
+      }
+
+      if (isMiddleware) {
+        next();
+        return;
+      }
+
+      res.send(data);
+    })().catch(next);
+  };
+}
 
 it("should send data from fn", async () => {
   const { payload } = await createTestResponse([
-    handle(() => ({ foo: "bar" })),
+    testHandle(() => ({ foo: "bar" })),
   ]);
 
   expect(JSON.parse(payload)).toEqual({ foo: "bar" });
@@ -11,7 +41,7 @@ it("should send data from fn", async () => {
 
 it("should continue to next middleware if middleware is true", async () => {
   const { payload } = await createTestResponse([
-    handle(
+    testHandle(
       (req, res) => {
         res.status(201);
       },
@@ -27,7 +57,7 @@ it("should continue to next middleware if middleware is true", async () => {
 
 it("should not continue to next middleware if headers is sent", async () => {
   const { statusCode, payload } = await createTestResponse([
-    handle((req: Request, res: Response) => {
+    testHandle((req: Request, res: Response) => {
       res.sendStatus(201);
     }),
     (req: Request, res: Response): void => {
@@ -41,7 +71,7 @@ it("should not continue to next middleware if headers is sent", async () => {
 
 it("should send error to error handler", async () => {
   const { statusCode, payload } = await createTestResponse([
-    handle(() => {
+    testHandle(() => {
       throw new Error("Oh noes");
     }),
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -56,13 +86,13 @@ it("should send error to error handler", async () => {
 
 it("should not trigger next handler if isMiddleware is true and handler function already send response", async () => {
   const { payload } = await createTestResponse([
-    handle(
+    testHandle(
       (req, res) => {
         res.send("ristarte best waifu");
       },
       { isMiddleware: true }
     ),
-    handle(
+    testHandle(
       (req, res) => {
         res.send("ristarte damegami");
       },
@@ -75,7 +105,7 @@ it("should not trigger next handler if isMiddleware is true and handler function
 
 it("should not send any payload if fn returns undefined", async () => {
   const { payload } = await createTestResponse([
-    handle(() => {
+    testHandle(() => {
       return;
     }),
   ]);
