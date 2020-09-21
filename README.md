@@ -1,4 +1,4 @@
-# @tkesgar/ariadoa
+# ariadoa
 
 [![Build Status](https://travis-ci.org/tkesgar/ariadoa.svg?branch=master)](https://travis-ci.org/tkesgar/ariadoa)
 
@@ -41,9 +41,9 @@ npm install @tkesgar/ariadoa --save-dev
 Given a list of middlewares, create an app with the middlewares and inject with
 a request.
 
-Please refer to [hapi Server.inject() docs][hapi-inject] for further
-details of the request options and response object. Note that
-`createTestResponse` sets the request URL to `/` by default.
+Please refer to [hapi Server.inject() docs][hapi-inject] for further details of
+the request options and response object. Note that `createTestResponse` sets the
+request URL to `/` by default.
 
 ```ts
 import { createTestResponse } from "@tkesgar/ariadoa";

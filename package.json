@@ -1,16 +1,17 @@
 {
   "name": "@tkesgar/ariadoa",
   "version": "2.0.0",
-  "description": "Wrapper to test Express-compatible middlewares",
+  "description": "Simulate request to express middlewares for testing",
   "keywords": [
     "express",
-    "test",
-    "middleware"
+    "hecks",
+    "middleware",
+    "test"
   ],
   "license": "MIT",
-  "author": "Ted Kesgar <t.kesgar@live.com> (https://tkesgar.com)",
+  "author": "Ted Kesgar <t.kesgar@hey.com> (https://tkesgar.com)",
   "contributors": [
-    "Ted Kesgar <t.kesgar@live.com> (https://tkesgar.com)"
+    "Ted Kesgar <t.kesgar@hey.com> (https://tkesgar.com)"
   ],
   "repository": {
     "type": "git",
@@ -21,7 +22,7 @@
   },
   "homepage": "https://github.com/tkesgar/ariadoa#readme",
   "engines": {
-    "node": ">=8"
+    "node": ">=12"
   },
   "files": [
     "dist/**"
